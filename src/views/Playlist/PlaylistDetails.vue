@@ -1,16 +1,5 @@
 <template>
-  <div class="single">
-            <div class="thumbnail">
-                <img :src="id.coverUrl">
-            </div>
-            <div class="info">
-                <h3>{{ id.title }}</h3>    
-                <p>created by {{ id.userName }}</p>
-            </div>
-            <div class="song-number">
-                <p>{{ id.songs.length }} songs</p>
-            </div>
-        </div>
+   <h2>playlist id: {{ id }}</h2>
 </template>
 
 <script>
