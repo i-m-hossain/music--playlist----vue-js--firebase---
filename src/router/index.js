@@ -3,8 +3,10 @@ import Home from '../views/Home.vue'
 import Login from '@/views/auth/Login'
 import Signup from '@/views/auth/Signup'
 import CreatePlaylist from '@/views/Playlist/CreatePlaylist'
+import PlaylistDetails from '@/views/Playlist/PlaylistDetails'
 
-//route guard
+//route guard  !--- Wowwwwwww, this is wowwwwwwwwwwwwwww-----! 
+//see main.js to solve the refresh logout problem
 
 import { projectAuth } from '@/firebase/config'
 
@@ -42,6 +44,14 @@ const routes = [
     component: CreatePlaylist,
     beforeEnter: requireAuth
   },
+  {
+    path: '/playlist/:id',
+    name: 'PlaylistDetails',
+    component: PlaylistDetails,
+    beforeEnter: requireAuth,
+    props: true
+  },
+
 
   
 ]
