@@ -1,10 +1,9 @@
 <template>
 
-    <p>playlist id:{{ id }}</p>
   <div class="error" v-if="error">{{ error }}</div>
   <div v-if="playlist" class="playlist-details">
 
-    <!-- playlist information -->
+    <!-- playlist information --> 
     <div class="playlist-info">
       <div class="cover">
         <img :src="playlist.coverUrl">
@@ -12,9 +11,10 @@
       <h2>{{ playlist.title }}</h2>
       <p class="username">Created by {{ playlist.userName }}</p>
       <p class="description">{{ playlist.description }}</p>
-    //   <button v-if="ownership" @click="handleDelete">Delete Playlist</button>
+    <!-- <button v-if="ownership" @click="handleDelete">Delete Playlist</button> -->
+    
     </div>
-
+    
     <!-- song list -->
     <div class="song-list">
       <p>song list here</p>
@@ -33,7 +33,7 @@ import getDocument from '@/composables/getDocument'
 export default {
   props: ['id'],
   setup(props) {
-    const { error, document: playlist } = getDocument('playlists', props.id)
+    const { error, document: playlist } = getDocument('Playlists', props.id)
     // const { user } = getUser()
     // const { deleteDoc } = useDocument('playlists', props.id)
     // const { deleteImage } = useStorage()
@@ -48,7 +48,7 @@ export default {
     //   await deleteImage(playlist.value.filePath)
     //   router.push({ name: 'Home' })
     // }
-    return { error, playlist }
+    return { error, playlist}
   }
 }
 </script>
