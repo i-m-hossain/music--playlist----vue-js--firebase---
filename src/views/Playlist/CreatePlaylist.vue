@@ -62,9 +62,7 @@ export default {
                    isPending.value = false
                }
                
-             }
-            
-        
+             }        
         }
         //allowed file types 
         const types = ['image/jpeg', 'image/png']

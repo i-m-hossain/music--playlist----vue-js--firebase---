@@ -11,7 +11,7 @@
       <h2>{{ playlist.title }}</h2>
       <p class="username">Created by {{ playlist.userName }}</p>
       <p class="description">{{ playlist.description }}</p>
-    <!-- <button v-if="ownership" @click="handleDelete">Delete Playlist</button> -->
+      <button v-if="ownership" @click="handleDelete"> Delete Playlist</button>
     
     </div>
     
@@ -24,31 +24,37 @@
 </template>
 
 <script>
-// import useStorage from '@/composables/useStorage'
-// import useDocument from '@/composables/useDocument'
+import useStorage from '@/composables/useStorage'
+import useDocument from '@/composables/useDocument'
 import getDocument from '@/composables/getDocument'
-// import getUser from '@/composables/getUser'
-// import { computed } from 'vue'
-// import { useRouter } from 'vue-router'
+import getUser from '@/composables/getUser'
+import { computed } from 'vue'
+import { useRouter } from 'vue-router'
 export default {
   props: ['id'],
   setup(props) {
     const { error, document: playlist } = getDocument('Playlists', props.id)
-    // const { user } = getUser()
-    // const { deleteDoc } = useDocument('playlists', props.id)
-    // const { deleteImage } = useStorage()
-    // const router = useRouter()
-    // const ownership = computed(() => {
-    //   return playlist.value 
-    //     && user.value 
-    //     && user.value.uid == playlist.value.userId
-    // })
-    // const handleDelete = async () => {
-    //   await deleteDoc()
-    //   await deleteImage(playlist.value.filePath)
-    //   router.push({ name: 'Home' })
-    // }
-    return { error, playlist}
+    const { user } = getUser()
+    const { deleteDoc } = useDocument('Playlists', props.id)
+    const { deleteImage } = useStorage()
+    const router = useRouter()
+    const ownership = computed(() => {
+        //three conditions must be checked 1.if the playlist is already loaded 2. if any user is loggedin
+        //3. if user id matches with playlist user id
+        // then this computed property will return true  
+
+        return playlist.value && user.value && playlist.value.userId == user.value.uid 
+    })
+
+    const handleDelete = async () => {
+        await deleteDoc()
+        await deleteImage(playlist.value.filePath)
+        
+        router.push({name: 'Home'})
+
+    }
+    
+    return { error, playlist, ownership, handleDelete}
   }
 }
 </script>

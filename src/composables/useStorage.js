@@ -31,8 +31,22 @@ const useStorage = () => {
         }
 
     }
+    const deleteImage = async (path) => {
+        
+        console.log(path);
+        
+        const storageRef = projectStorage.ref(path)
 
-    return { error, url, filePath, uploadImage }
+        try {
+            await storageRef.delete()
+            
+        } catch (err) {
+            console.log(err.message)
+            error.value = err.message
+        }
+    }
+
+    return { error, url, filePath, uploadImage, deleteImage }
 }
 
 
