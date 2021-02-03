@@ -18,12 +18,15 @@
     <!-- song list -->
     <div class="song-list">
       <p>song list here</p>
+      <AddSong v-if="ownership" :playlist="playlist"/>
+      
     </div>
     
   </div>
 </template>
 
 <script>
+import AddSong from '@/components/AddSong'
 import useStorage from '@/composables/useStorage'
 import useDocument from '@/composables/useDocument'
 import getDocument from '@/composables/getDocument'
@@ -32,6 +35,7 @@ import { computed } from 'vue'
 import { useRouter } from 'vue-router'
 export default {
   props: ['id'],
+  components:{AddSong},
   setup(props) {
     const { error, document: playlist } = getDocument('Playlists', props.id)
     const { user } = getUser()
@@ -59,7 +63,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   .playlist-details {
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -81,9 +85,11 @@ export default {
     max-width: 200%;
     max-height: 200%;
   }
+
   .playlist-info {
     text-align: center;
   }
+
   .playlist-info h2 {
     text-transform: capitalize;
     font-size: 28px;
@@ -97,5 +103,8 @@ export default {
   }
   .description {
     text-align: left;
+  }
+  button{
+      margin-bottom: 30px;
   }
 </style>
