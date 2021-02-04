@@ -50,8 +50,8 @@ const routes = [
     path: '/playlists/:id',
     name: 'PlaylistDetails',
     component: PlaylistDetails,
+    props: true,
     beforeEnter: requireAuth,
-    props: true
   },
   {
     path: '/playlists/user',
