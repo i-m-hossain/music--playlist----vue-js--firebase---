@@ -5,8 +5,17 @@
         <img src="@/assets/music-playlist-folder.png" alt="">
         <h1><router-link :to="{ name: 'Home' }">Music Playlist</router-link></h1>
         <div class="links">
+
+
+
+            
             <div v-if="user">
+                
+                <router-link :to="{name: 'UserPlaylists'}">My playlist</router-link>
                 <router-link :to="{name: 'CreatePlaylist'}"> Create Playlist</router-link>
+
+                <span>Hi there,  {{ user.displayName }}</span>
+
                 <button  @click="handleClick">Logout</button>
             </div>
             
@@ -88,5 +97,13 @@ export default {
     nav img{
         max-height: 30px;
     }
+    span{
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        margin: 0 10px;
+        padding: 0 10px;
+    
+    }
+
 
 </style>

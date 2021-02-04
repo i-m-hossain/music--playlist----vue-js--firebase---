@@ -4,6 +4,8 @@ import Login from '@/views/auth/Login'
 import Signup from '@/views/auth/Signup'
 import CreatePlaylist from '@/views/Playlist/CreatePlaylist'
 import PlaylistDetails from '@/views/Playlist/PlaylistDetails'
+import UserPlaylists from '@/views/Playlist/UserPlaylists'
+
 
 //route guard  !--- Wowwwwwww, this is wowwwwwwwwwwwwwww-----! 
 //see main.js to solve the refresh logout problem
@@ -51,8 +53,13 @@ const routes = [
     beforeEnter: requireAuth,
     props: true
   },
-
-
+  {
+    path: '/playlists/user',
+    name: 'UserPlaylists',
+    component: UserPlaylists,
+    beforeEnter: requireAuth,
+    
+  }
   
 ]
 

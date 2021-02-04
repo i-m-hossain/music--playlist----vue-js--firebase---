@@ -13,12 +13,13 @@
   </div>
 
   <button v-if="isPending" disabled>loading</button>
-  <button v-else>Login</button>
+  <button v-if="!isPending">Login</button>
   </form>
 </template>
 
 <script>
 import useLogin from '@/composables/useLogin'
+import { useRouter } from "vue-router"
 import { ref } from 'vue'
 
 export default {
@@ -28,12 +29,16 @@ export default {
         const { error, login, isPending } = useLogin()
         const email = ref('')
         const password = ref('')
+        const router = useRouter()
 
         const handleSubmit= async() => {
             
             const res= await login(email.value, password.value)
             if(!error.value){
-                console.log('user is logged in');
+          
+                router.push({name: "UserPlaylists"})
+                console.log('logged in');
+
             }
 
         }
