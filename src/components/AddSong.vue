@@ -1,9 +1,5 @@
 <template>
 
-    <div class="show-song">
-
-
-    </div>
     <div class="add-song">
 
         <button v-if = "!showForm" @click="showForm=true">Add Song</button>
@@ -46,6 +42,8 @@ setup(props){
 
         title.value = ''
         artist.value = ''
+
+        
         
     }
 
